@@ -1,0 +1,174 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 8px 12px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+}
+.toolbar label.dim {
+  opacity: 0.45;
+}
+.toolbar input[type='range'] {
+  width: 90px;
+  accent-color: var(--accent);
+}
+button,
+select {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+button.active,
+button.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+button.primary {
+  min-width: 76px;
+}
+.check input {
+  accent-color: var(--accent);
+}
+
+/* stage: corner | ruler / axis | canvas */
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: 22px 1fr;
+  padding: 8px 12px 0 0;
+}
+.corner {
+  position: relative;
+}
+.readout {
+  position: absolute;
+  left: 56px;
+  top: 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  pointer-events: none;
+}
+.ruler {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  touch-action: none;
+}
+.tick {
+  position: absolute;
+  bottom: 2px;
+  transform: translateX(-50%);
+  color: var(--text-dim);
+  font-size: 11px;
+  pointer-events: none;
+}
+.tick:first-child {
+  transform: none;
+}
+.ruler-head {
+  position: absolute;
+  bottom: -1px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  transform: translateX(-6px);
+  pointer-events: none;
+}
+.axis {
+  position: relative;
+}
+.axis span {
+  position: absolute;
+  right: 6px;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  font-size: 11px;
+}
+.canvas-box {
+  position: relative;
+  min-height: 0;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.canvas-box canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+}
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+/* status bar */
+.status {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 6px 12px;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.status .title {
+  color: var(--text);
+  font-weight: 600;
+}
+.status .hint {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.status .spacer {
+  flex: 1;
+}
+.status .busy {
+  color: var(--accent);
+}
+.status .error {
+  color: var(--danger);
+}
